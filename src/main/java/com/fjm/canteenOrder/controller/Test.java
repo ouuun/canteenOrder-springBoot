@@ -1,5 +1,7 @@
 package com.fjm.canteenOrder.controller;
 
+import com.fjm.canteenOrder.convert.UserConvert;
+import com.fjm.canteenOrder.entity.DTO.UserDTO;
 import com.fjm.canteenOrder.entity.Result;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,5 +17,14 @@ public class Test {
     @PostMapping("/post")
     public Object hello2(@RequestBody Object obj) {
         return Result.success("hello");
+    }
+
+    @PostMapping("/post2")
+    public Object hello3(@RequestBody Object obj) {
+        UserDTO userDTO = new UserDTO();
+        userDTO.setName("test");
+        userDTO.setId(1l);
+
+        return Result.success(UserConvert.INSTANCE.userDTOToUserDO(userDTO));
     }
 }
